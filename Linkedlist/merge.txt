@@ -12,7 +12,7 @@ Node* sortedMerge(Node* head1, Node* head2)
         head2 = head2 -> next;
     }
     temp = mergelist;
-    while(head1 != NULL && head2 != NULL){
+    while(head1 != NULL && head2 != NULL){2
         if(head1 -> data <= head2 -> data){
             temp -> next = head1;
             temp = temp -> next;
