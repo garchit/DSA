@@ -1,0 +1,72 @@
+class Nstack
+{
+public:
+    int *arr;
+    int *top;
+    int *next;
+    int n,s;
+    int freespot;
+    Nstack(int N, int S)
+    {
+        n=N;
+        s=S;
+        arr=new int[s];
+        top=new int[n];
+        next=new int[s];
+        for(int i=0;i<n;i++) top[i]=-1;
+        for(int i=0;i<s;i++) next[i]=i+1;
+        next[s-1]=-1;
+        freespot=0;
+    }
+    void push(int x, int m)
+    {
+        if(freespot==-1) cout<<"Stack Overflow\n";
+        
+        int index=freespot;
+        freespot=next[index];
+        
+        arr[index]=x;
+        
+        next[index]=top[m-1];
+        top[m-1]=index;
+    }
+    void pop(int m)
+    {
+        if(top[m-1]==-1) cout<<"Stack underflow\n";
+        
+        int index=top[m-1];
+        top[m-1]=next[index];
+        next[index]=freespot;
+        freespot=index;
+        cout<<"popped: "<<arr[index]<<endl;
+        
+    }
+};
+
+
+
+
+int main(){
+    NStack N(4,8);
+    N.push(33,1);
+    N.push(22,1);
+    N.push(38,2);
+    N.push(45,2);
+    N.push(56,3);
+    N.push(68,3);
+    N.push(79,4);
+    N.push(800,4);
+    N.pop(2);
+    N.pop(3);
+
+    n.pop(1);
+    n.pop(2);
+
+    n.pop(2);
+    n.pop(3);
+
+    n.pop(1);
+    n.pop(3);
+
+    return 0;
+}
