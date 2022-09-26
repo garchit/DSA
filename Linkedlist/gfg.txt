@@ -1,0 +1,23 @@
+     vector<vector<int>>res(n,vector<int>(n,0));
+
+        int size = Queries.size();
+
+        for(int z = 0 ; z< size; z++){
+
+            int i = Queries[z][0];
+
+            int j = Queries[z][1];
+
+            int k = Queries[z][2];
+
+            int l = Queries[z][3];
+
+            for(int x = i ; x<= k ; x++ )
+
+                for(int y = j ; y<=l ; y++)
+
+                    res[x][y]++;
+
+        }
+
+        return res;

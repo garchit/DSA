@@ -1,0 +1,49 @@
+class Solution
+{
+    private:
+    void insertAtEnd(Node* &clonehead , Node* &clonetail , int d){
+        Node* curr = new Node(d);
+        if(clonehead == NULL){
+            clonehead = curr;
+            clonetail = curr;
+        }
+        else{
+            clonetail -> next = curr;
+            clonetail = curr;
+        }
+    }
+    public:
+    Node *copyList(Node *head)
+    {
+        // 1st point kya tha ki clone list bnaao
+        Node* clonehead = NULL;
+        Node* clonetail = NULL;
+        
+        Node* temp = head;
+        
+        while(temp != NULL){
+            insertAtEnd(clonehead , clonetail , temp -> data);
+            temp = temp -> next;
+        }
+        
+        // 2nd Step mapping 
+        unordered_map<Node* , Node*>oldtonew;
+        temp = head;
+        Node* temp2 = clonehead;
+        while(temp != NULL){
+            oldtonew[temp] = temp2;
+            temp = temp -> next;
+            temp2 = temp2 -> next;
+        }
+        
+        temp = head;
+        temp2 = clonehead;
+        
+        while(temp != NULL){
+            temp2 -> arb = oldtonew[temp->arb];
+            temp = temp -> next;
+            temp2 = temp2 -> next;
+        }
+        return clonehead;
+        //Write your code here
+    }
